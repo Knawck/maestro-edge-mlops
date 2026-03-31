@@ -136,8 +136,6 @@ Get all 7 PoCs running locally. Each proves one claim from the research plan.
 
 ## Research context
 
-Full research plan: [docs/maestro-research-plan.pdf](docs/maestro-research-plan.pdf)
-
 The MAESTRO framework proposes a unified self-healing Edge MLOps architecture
 in which AI models manage the reliability of real-time audio streams, and the
 MLOps infrastructure manages the reliability of those AI models.
@@ -148,7 +146,7 @@ This is the foundation it stands on.
 
 ---
 
-*MEXT Scholarship Application 2026 · Anirban Biswas · myself.anirban11@gmail.com*
+*MEXT Scholarship Application 2026 · Anirban Biswas ·
 ```
 
 ---
