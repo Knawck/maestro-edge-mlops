@@ -145,28 +145,3 @@ The Japan inter-city deployment across Tokyo–Osaka–Fukuoka is the research.
 This is the foundation it stands on.
 
 ---
-
-*MEXT Scholarship Application 2026 · Anirban Biswas ·
-```
-
----
-
-## Final folder structure check
-
-After all the above, your folder should look exactly like this:
-```
-D:\maestro-edge-mlops\
-├── README.md
-├── docs\
-│
-└── poc-01-audio-latency-lab\
-    ├── README.md
-    ├── requirements.txt
-    ├── src\
-    │   ├── latency_measure.py
-    │   ├── visualise_results.py
-    │   └── clumsy_guide.md
-    └── results\
-        ├── clean.csv          ← created when you run the script
-        ├── degraded.csv       ← created when you run with Clumsy
-        └── comparison.png     ← created by visualise_results.py
