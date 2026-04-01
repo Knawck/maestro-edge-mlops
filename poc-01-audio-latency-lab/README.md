@@ -29,7 +29,7 @@ literature.
 | Scenario | Mean RTT | p99 RTT | Jitter σ | Music OK? |
 |----------|----------|---------|----------|-----------|
 | Baseline (clean) | < 2ms | < 5ms | < 1ms | ✅ Yes |
-| Degraded (Clumsy: 20ms lag, 10% loss) | ~22ms | ~38ms | ~12ms | ❌ No |
+| Degraded (Clumsy: 20ms lag, 10% loss) | ~52ms | ~110ms | ~17ms | ❌ No |
 
 ![Comparison Plot](results/comparison.png)
 
