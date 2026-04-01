@@ -1,5 +1,10 @@
 # PoC-01 — Audio Latency Measurement Lab
 
+[![PoC-01 Status](https://img.shields.io/badge/status-complete-green)]()
+[![MAESTRO Layer](https://img.shields.io/badge/MAESTRO-Layer%201%3A%20Edge%20Audio%20Ingestion-amber)]()
+[![Python 3.11](https://img.shields.io/badge/python-3.11-blue)]()
+[![License: MIT](https://img.shields.io/badge/license-MIT-yellow)]()
+
 ## What this proves
 
 Jitter above **8ms** destroys musical timing coherence. This is the empirical
