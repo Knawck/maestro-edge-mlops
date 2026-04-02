@@ -1,44 +1,32 @@
 import pandas as pd
 import numpy as np
-import argparse
 import os
 
-def generate_data(samples: int, out_path: str):
-    print(f"Generating {samples} network traces...")
+def generate_stateful_data(samples=60000, out_path="data/traces.csv"):
+    print("Generating Stateful Network Patterns for Maestro...")
     np.random.seed(42)
     
-    # Simulate normal network traffic
-    rtt_ms = np.random.normal(loc=15, scale=5, size=samples) + np.random.exponential(scale=10, size=samples)
-    jitter_ms = np.random.exponential(scale=3, size=samples)
-    loss_pct = np.random.poisson(lam=1, size=samples)
-    ecn_fill = np.random.uniform(0, 1, size=samples)
+    # Start with "Good" network values
+    rtt, jitter, loss = [15.0], [2.0], [0.5]
     
-    # Inject artificial network crashes
-    bad_events = np.random.choice([True, False], size=samples, p=[0.1, 0.9])
-    rtt_ms[bad_events] += np.random.normal(50, 20, size=sum(bad_events))
-    jitter_ms[bad_events] += np.random.normal(15, 5, size=sum(bad_events))
-    loss_pct[bad_events] += np.random.randint(5, 20, size=sum(bad_events))
-    
-    # The Target: 1 (Good Quality) if healthy, 0 (Bad Quality) if broken
-    quality_label = ((rtt_ms < 30) & (jitter_ms < 8.0) & (loss_pct < 5)).astype(int)
-    
+    for _ in range(1, samples):
+        # Create a "Trend" (Random Walk) - each point depends on the last
+        rtt.append(max(5, rtt[-1] + np.random.normal(0, 2)))
+        jitter.append(max(0.1, jitter[-1] + np.random.normal(0, 0.5)))
+        loss.append(max(0, loss[-1] + np.random.normal(0, 0.2)))
+
     df = pd.DataFrame({
-        "rtt_ms": np.clip(rtt_ms, 0, 200),
-        "jitter_ms": np.clip(jitter_ms, 0, 50),
-        "loss_pct": np.clip(loss_pct, 0, 100),
-        "ecn_fill": ecn_fill,
-        "dummy_1": 0.0, 
-        "dummy_2": 0.0,
-        "label": quality_label
+        "rtt": rtt, "jitter": jitter, "loss": loss,
+        "ecn": np.random.uniform(0, 1, samples),
+        "d1": 0.0, "d2": 0.0
     })
+    
+    # Harder Logic: Must pass all 3 tests to be "Good" (1)
+    df['label'] = ((df['rtt'] < 35) & (df['jitter'] < 8.0) & (df['loss'] < 3)).astype(int)
     
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     df.to_csv(out_path, index=False)
-    print(f"Data saved to {out_path}")
+    print(f"Stateful data saved to {out_path}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--samples", type=int, default=50000)
-    parser.add_argument("--out", type=str, default="data/traces.csv")
-    args = parser.parse_args()
-    generate_data(args.samples, args.out)
+    generate_stateful_data()
