@@ -49,7 +49,7 @@ breakthrough.
 
 ### Training curves
 
-![Training Curves](results/training_curves.png)
+![Training Curves](./results/training_curves.png)
 
 | Metric | Value | Target | Status |
 |--------|-------|--------|--------|
