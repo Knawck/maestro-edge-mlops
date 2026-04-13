@@ -1,0 +1,21 @@
+# --- Python Environments ---
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# --- Data & Models (Keep the folders, ignore the files) ---
+data/*.csv
+models/*.pt
+models/training_history.json
+results/*.png
+
+# --- IDE & OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- MLOps ---
+.clearml.conf
